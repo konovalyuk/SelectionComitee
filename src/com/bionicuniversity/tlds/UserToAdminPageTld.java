@@ -1,0 +1,46 @@
+package com.bionicuniversity.tlds;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.tagext.*;
+import javax.servlet.jsp.*;
+
+public class UserToAdminPageTld extends SimpleTagSupport {
+
+	public void doTag() throws JspException {
+		PageContext pageContext = (PageContext) getJspContext();
+		HttpSession session = null;
+		Integer userType = null;
+
+		try {
+			RequestDispatcher rd = null;
+			try {
+				session = pageContext.getSession();
+				userType = Integer.parseInt(session.getAttribute("userType").toString());
+				if (userType != null) {
+					if (userType == 1) {
+						rd = pageContext.getServletContext().getRequestDispatcher("/admin_user_page.jsp");
+						rd.forward(pageContext.getRequest(), pageContext.getResponse());
+					} else {
+						rd = pageContext.getServletContext().getRequestDispatcher("/user_page.jsp");
+						rd.forward(pageContext.getRequest(), pageContext.getResponse());
+					}
+				}
+			} catch (NullPointerException e) {
+				try {
+					rd.forward(pageContext.getRequest(), pageContext.getResponse());
+				} catch (ServletException e1) {
+					e1.printStackTrace();
+				}
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
+
+		} catch (IOException ex) {
+			throw new JspException(ex.getMessage());
+		}
+	}
+}
