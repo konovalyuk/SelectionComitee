@@ -11,9 +11,13 @@
 
     
     <session-config>
+<<<<<<< HEAD
         <session-timeout>
             1
         </session-timeout>
+=======
+        <session-timeout>5</session-timeout>
+>>>>>>> 554bd6d1502280087c1b6d4cd4bce7a74f6d35ae
     </session-config>
     <filter>
         <filter-name>CharFilter</filter-name>

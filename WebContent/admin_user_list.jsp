@@ -42,8 +42,8 @@
 		  <tr>
 		  <td><c:out value="${faculty}"/></td>
  		  <td>
- 		    <form name="adminListForm" method="POST" action="controller">
- 		    <input type="hidden" name="command" value="viewapplicants">
+ 		    <form name="choseFac" method="POST" action="controller">
+ 		    <input type="hidden" name="command" value="adminviewapplicants">
 		    <input type="hidden" name="faculty" value="${faculty}">
 		    <input type="submit" value="View"></input></form>
 		  </td>
@@ -56,11 +56,8 @@
       <br/>
 	  <h2>Faculty: <c:out value="${facname}"/></h2>
 	  <br/>
-<<<<<<< HEAD
-=======
 	  <h6>Size: <c:out value="${size}"/></h6>
 	  <h6>Proshlo: <c:out value="${statsize}"/></h6>
->>>>>>> 554bd6d1502280087c1b6d4cd4bce7a74f6d35ae
 	  <h4>List of passed applicants:</h3>
 	  <table style="display: inline-block;">
  	  <tr><th>Applicant name</th></tr>
@@ -82,6 +79,37 @@
  		  <tr>
 		  <td>
 		    <c:out value="${grade}"/>
+		  </td>
+		  </tr>
+		  </c:forEach>
+	  
+      </table>
+      
+      <table style="display: inline-block;">
+ 	  <tr><th>Status</th></tr>
+	  	  
+ 		  <c:forEach items="${statuses}" var="status">
+ 		  <tr>
+		  <td>
+		    <c:out value="${status}"/>
+		  </td>
+		  </tr>
+		  </c:forEach>
+	  
+      </table>
+      
+      <table style="display: inline-block;">
+ 	  <tr><th>Change status</th></tr>
+	  	  
+ 		  <c:forEach items="${facultyIds}" var="id">
+ 		  <tr>
+		  <td>
+		    
+		    <form name="adminListForm" method="POST" action="controller">
+ 		    <input type="hidden" name="command" value="changestatus">
+		    <input type="hidden" name="Enter" value="${id}">
+		    <input type="submit" value="Change status"></input></form>
+		    
 		  </td>
 		  </tr>
 		  </c:forEach>
